@@ -1,0 +1,50 @@
+---
+title: "2020_wk13"
+author: "Stephen Pelkofer"
+date: "3/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+library(scales)
+library(ggplot2)
+library(ggtext)
+
+colors = c("#045a8d","#2b8cbe","#a6cee3")
+
+tbi_year <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-24/tbi_year.csv')
+
+```
+
+
+``` {r}
+tbi_by_year <- tbi_year %>%
+  mutate(year = as.factor(year)) %>%
+  filter(injury_mechanism != "Total") %>%
+  drop_na() %>%
+  group_by(type,year) %>%
+  summarise(Total = sum(number_est)) %>%
+  ggplot(aes(x = year, y = Total, fill = type)) +
+  geom_bar(position = "stack", stat = "identity") +
+  scale_y_continuous(labels = comma_format()) +
+  scale_fill_manual(name = "Injury Type",values=colors) +
+  labs(
+    x = "",
+    y = "",
+    title = "<b style='color:#636363'>Traumatic Brain Injuries have Increased each year from 2006-2014</b>",
+    caption = "Data From: CDC.gov | VIZ Author: @Spelk24"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_markdown(),
+        plot.caption = element_text(color = "#636363"),
+        legend.position="top",
+        legend.title = element_blank())
+ggsave("tbi_by_year.png",plot=tbi_by_year, width = 9)
+tbi_by_year
+
+```
+
+
