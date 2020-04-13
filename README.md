@@ -1,9 +1,13 @@
-# SP_TidyTuesday
+# Data Viz Portfolio
 
-#tidytuesday weekly datasets &amp; visuals
+Personal Data Viz projects; including:
+- #tidytuesday weekly datasets &amp; visuals
+- Grad school homework & research
+- NBA side projects
+- Political side projects
 
 ## Examples
 
-### 2020 Wk 13
+### tidytuesday 2020 Wk 13
 
 ![2020 Wk 13](/2020/Wk13/tbi_by_year.png)
