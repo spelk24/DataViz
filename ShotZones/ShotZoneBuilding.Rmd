@@ -1,0 +1,32 @@
+---
+title: "WeeklySchoolHours"
+author: "Stephen Pelkofer"
+date: "4/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Imports
+
+```{r}
+source("court.R")
+library(plotly)
+library(tidyverse)
+library(glue)
+library(extrafont)
+library(scales)
+library(htmltools)
+library(ggtext)
+```
+
+
+## Data
+
+```{r}
+GameLogs <- read.csv("data/GameLogs.csv")
+levels(GameLogs$Distance) <- c("0-4ft","10-14ft","15-19ft","20-24ft","25-29ft","5-9ft")
+```
+
