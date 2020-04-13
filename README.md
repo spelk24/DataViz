@@ -10,4 +10,4 @@ Personal Data Viz projects; including:
 
 ### tidytuesday 2020 Wk 13
 
-![2020 Wk 13](/2020/Wk13/tbi_by_year.png)
+![2020 Wk 13](tidytuesday/2020/Wk13/tbi_by_year.png)
