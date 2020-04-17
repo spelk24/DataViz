@@ -1,0 +1,83 @@
+---
+title: "Weekly Class Hours - Spring 2020"
+author: "Stephen Pelkofer"
+date: "4/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries & Data
+```{r echo = FALSE}
+library(tidyverse)
+library(ggtext)
+library(scales)
+library(ggthemes)
+library(readr)
+```
+
+```{r}
+weekly_hours <- read.delim("clipboard")
+str(weekly_hours)
+```
+
+## Dataprep
+
+```{r}
+weekly_hours$Week <- parse_number(as.vector(weekly_hours$Week))
+weekly_hours$Hours <- as.numeric(weekly_hours$Hours) 
+weekly_hours$Line <- ifelse(weekly_hours$Hours >= 15,"Yes","No")
+```
+
+
+
+## CSE 6242 Bar Chart
+- GaTech colorway:https://ramblinwreck.com/georgia-tech-athletics-brand-guidelines/
+
+```{r}
+DVAWeeklyHours <- ggplot(data = weekly_hours, aes(x = Week, y = Hours))+
+  geom_bar(stat = "identity",fill = "#B3A369", color = "white" ,width = .98) +
+  scale_y_continuous(limits = c(0,21), expand = c(0, 0)) +
+  scale_x_discrete(limits = c(2,4,6,8,10,12,14)) +
+  labs(title = "<b style='color:#003057'>Georgia Tech CSE 6242</b>",
+       subtitle = "Weekly <b style='color:#B3A369'>Hours</b> Spring 2020<br>",
+       caption = "<p style='color:#003057'>VIZ Author: Stephen Pelkofer | @Spelk24</p>") +
+  geom_label(aes(x = 7.5, y = 19.5, label = "No social \nlife"), 
+             hjust = 0, 
+             vjust = 0.5, 
+             lineheight = 0.8,
+             colour = "#555555", 
+             fill = "white", 
+             label.size = NA,
+             size = 4) +
+  geom_curve(aes(x = 8.5, y = 18.7, xend = 10.2, yend = 16), 
+                             colour = "#555555", 
+                             size=0.5, 
+                             curvature = 0.3,
+                             arrow = arrow(length = unit(0.03, "npc"))) +
+  theme(plot.title = element_markdown(),
+        plot.subtitle = element_markdown(),
+        plot.caption = element_markdown(),
+        panel.background = element_rect(fill = "white", colour = "white"),
+        panel.grid.major.y = element_line(color = "grey50",size = .01, linetype = "dotted"),
+        panel.grid.minor = element_blank(),
+        axis.line.x = element_line(color = "#B3A369",size = 2))
+DVAWeeklyHours
+```
+
+## Save Chart
+
+```{r}
+ggsave(filename = "DVAWeeklyHours.png",
+       plot = print(DVAWeeklyHours),
+       width = 7,
+       height = 5)
+```
+
+
+
+
+
+
