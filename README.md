@@ -1,6 +1,7 @@
 # Data Viz Portfolio
 
 Personal Data Viz projects; including:
+
 - #tidytuesday weekly datasets &amp; visuals
 - Grad school homework & research
 - NBA side projects
@@ -8,6 +9,10 @@ Personal Data Viz projects; including:
 
 ## Examples
 
-### tidytuesday 2020 Wk 13
+### Georgia Tech CSE 6242 Weekly Hours
 
-![2020 Wk 13](tidytuesday/2020/Wk13/tbi_by_year.png)
+<img src="GT-Weekly School Hours/DVAWeeklyHours.png" width="400" height="300" />
+
+### #tidytuesday 2020 Wk 13
+
+<img src="tidytuesday/2020/Wk13/tbi_by_year.png" width="400" height="300" />
